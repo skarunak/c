@@ -1,0 +1,68 @@
+GAS LISTING /tmp/cc94oNYk.s 			page 1
+
+
+   1              		.file	"main.c"
+   2              	.globl usa
+   3              		.data
+   4              		.align 4
+   5              		.type	usa, @object
+   6              		.size	usa, 4
+   7              	usa:
+   8 0000 64000000 		.long	100
+   9              	.globl aarti
+  10              		.align 4
+  11              		.type	aarti, @object
+  12              		.size	aarti, 4
+  13              	aarti:
+  14 0004 C8000000 		.long	200
+  15              	.globl ksk
+  16              		.align 4
+  17              		.type	ksk, @object
+  18              		.size	ksk, 4
+  19              	ksk:
+  20 0008 C8000000 		.long	200
+  21              	.globl ch
+  22              		.section	.rodata
+  23              	.LC0:
+  24 0000 4920616D 		.string	"I am in global"
+  24      20696E20 
+  24      676C6F62 
+  24      616C00
+  25              		.data
+  26              		.align 4
+  27              		.type	ch, @object
+  28              		.size	ch, 4
+  29              	ch:
+  30 000c 00000000 		.long	.LC0
+  31              		.section	.rodata
+  32              	.LC1:
+  33 000f 4920616D 		.string	"I am in local"
+  33      20696E20 
+  33      6C6F6361 
+  33      6C00
+  34              		.text
+  35              	.globl main
+  36              		.type	main, @function
+  37              	main:
+  38 0000 55       		pushl	%ebp
+  39 0001 89E5     		movl	%esp, %ebp
+  40 0003 83EC10   		subl	$16, %esp
+  41 0006 C745FC0F 		movl	$.LC1, -4(%ebp)
+  41      000000
+  42 000d C9       		leave
+  43 000e C3       		ret
+  44              		.size	main, .-main
+  45              		.ident	"GCC: (Ubuntu/Linaro 4.5.2-8ubuntu4) 4.5.2"
+  46              		.section	.note.GNU-stack,"",@progbits
+GAS LISTING /tmp/cc94oNYk.s 			page 2
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 main.c
+     /tmp/cc94oNYk.s:7      .data:0000000000000000 usa
+     /tmp/cc94oNYk.s:13     .data:0000000000000004 aarti
+     /tmp/cc94oNYk.s:19     .data:0000000000000008 ksk
+     /tmp/cc94oNYk.s:29     .data:000000000000000c ch
+     /tmp/cc94oNYk.s:37     .text:0000000000000000 main
+
+NO UNDEFINED SYMBOLS
