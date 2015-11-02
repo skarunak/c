@@ -1,2 +1,2 @@
 # c
-c-progs
+c-progs and python scripts
