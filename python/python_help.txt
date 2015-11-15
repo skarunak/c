@@ -1,0 +1,22 @@
+File containing references
+
+* Useful functions
+- repr - converts to a python expression
+
+* Data Types:
+- Strings , raw strings
+- int 
+ 
+Operations
+Slicing, Indexing, Multiply, Add , check membership, delete
+Eg. del list_name[3]
+
+* Data structures - 6 builtin sequences
+- List, tuples and strings are also sequences as the elements are numbered in sequence
+- List - Can be modified
+- Tuple - cannot modify like strings. There are no append, sort possible like list.
+
+* Containers
+One type data type within another. Eg list within a list.
+* Mappings 
+- Dictionaries
