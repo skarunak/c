@@ -16,7 +16,17 @@ Eg. del list_name[3]
 - List - Can be modified
 - Tuple - cannot modify like strings. There are no append, sort possible like list.
 
+* Mappings 
+- Dictionaries (dict)
+- Assigning one dict to another just copies the reference, modifying the copied one will affect the original dict. Check the use of copy and deepcopy.
+  copy - shallow copy of keys and values. if value is list then again reference is made. so any change/add/del to key will not affect the copied obj but if list is modified then it will be reflected in the copied object as well.
+- iterkeys method to iterate over dictionary object
+
 * Containers
 One type data type within another. Eg list within a list.
-* Mappings 
-- Dictionaries
+
+Other useful titbits:
+- * argument in an assignment. Carries all the elements passed to this function
+- 'is' operator tests for identity and not for equality. 
+- enumerate - useful in iterating
+- there is 'else' for 'for' statement as well
