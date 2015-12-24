@@ -26,7 +26,12 @@ Eg. del list_name[3]
 One type data type within another. Eg list within a list.
 
 Other useful titbits:
-- * argument in an assignment. Carries all the elements passed to this function
+- * as function argument in an assignment. Carries all the elements passed to this function in a tuple
+- Another use of * is to expand a tuple
+- ** as functiona argument does the above but stores all in key,value pairs in a dictionary
+- Another use of ** is to expand a dictionary
 - 'is' operator tests for identity and not for equality. 
 - enumerate - useful in iterating
 - there is 'else' for 'for' statement as well
+- slice of any object returns a copy and wont be pointing to same reference
+- 'repr' returns any of its input as string
