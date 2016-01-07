@@ -1,7 +1,7 @@
 File containing references
 
 * Useful functions
-- repr - converts to a python expression
+- repr - converts to a python expression and returns a string
 
 * Data Types:
 - Strings , raw strings
@@ -25,6 +25,12 @@ Eg. del list_name[3]
 * Containers
 One type data type within another. Eg list within a list.
 
+* Classes
+- Each methods 1st argument is its own object/instance called self.
+- All attributes, methods are accessible by directly referencing the objects. To make private methods, use __ before the method name. Still there is a way to access these private methods if we know how these methods are stored. Using a single _ before methods make them strictly private but have some limiations like they cannot be imported using * like 'from module import *' wont import these methods.
+- It is possible to find whether a class is a subclass of another class or not. Can also find the base class given a class. 
+- Class has its own namespace which can be shared with all the objects of this class. If any of the object modifies any global attribute then a copy is made for that object. 
+
 Other useful titbits:
 - * as function argument in an assignment. Carries all the elements passed to this function in a tuple
 - Another use of * is to expand a tuple
@@ -34,4 +40,4 @@ Other useful titbits:
 - enumerate - useful in iterating
 - there is 'else' for 'for' statement as well
 - slice of any object returns a copy and wont be pointing to same reference
-- 'repr' returns any of its input as string
+- vars(), locals() can give the available user defined & inbuilt methods in the name space. vars(obj) will give the attributes associated with the argument.

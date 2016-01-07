@@ -72,7 +72,7 @@ def NosCmd(tn, command):
 
     if '?' in resp:
 
-       print "Respond with yes for any query\n")
+       print "Respond with yes for any query\n"
 
        tn.write("y\n")
 
