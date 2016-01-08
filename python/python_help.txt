@@ -26,10 +26,21 @@ Eg. del list_name[3]
 One type data type within another. Eg list within a list.
 
 * Classes
+- __metatype__ == type ; to use new class styles. There are 2 types, old & new. 
 - Each methods 1st argument is its own object/instance called self.
 - All attributes, methods are accessible by directly referencing the objects. To make private methods, use __ before the method name. Still there is a way to access these private methods if we know how these methods are stored. Using a single _ before methods make them strictly private but have some limiations like they cannot be imported using * like 'from module import *' wont import these methods.
 - It is possible to find whether a class is a subclass of another class or not. Can also find the base class given a class. 
-- Class has its own namespace which can be shared with all the objects of this class. If any of the object modifies any global attribute then a copy is made for that object. 
+- Class has its own namespace which can be shared with all the objects of this class. If any of the object modifies any global attribute then a copy is made for that object.
+- __init__ is the constructor for any class. Need to use 'super' for access the constructors of parent classes. super is present only in new class styles. 
+- __funname__ (start & end with __) are special functions. Can implement obj[idx] for user defined objects using these special methods like __getitem__ or an iterator using __itr__ & next(). Similar methods for __setitem__, __len__. 
+
+* Exceptions:
+- Raise meaningful user defined exceptions apart from the well defined ones.
+- try+except+else+finally block to handle exceptions
+- Else can be used in conjunction with except and finally is called in any case whether an exception occurred or not which can be used for cleaning up
+
+* Generators:
+- Use yield keyword, similar to return but the function freezes there and when called again continues from where it is left.
 
 Other useful titbits:
 - * as function argument in an assignment. Carries all the elements passed to this function in a tuple
@@ -40,4 +51,6 @@ Other useful titbits:
 - enumerate - useful in iterating
 - there is 'else' for 'for' statement as well
 - slice of any object returns a copy and wont be pointing to same reference
+- dir(imported module name) - Gives the list of functions exported 
 - vars(), locals() can give the available user defined & inbuilt methods in the name space. vars(obj) will give the attributes associated with the argument.
+- Get to source file using __file__ . Eg. copy.__file__. Few built in libraries wont display source
