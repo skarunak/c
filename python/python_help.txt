@@ -42,6 +42,11 @@ One type data type within another. Eg list within a list.
 * Generators:
 - Use yield keyword, similar to return but the function freezes there and when called again continues from where it is left.
 
+* sockets
+- urllib & urllib2 are useful in extracting webpages. Data can be extracted using 're' modules
+- telnetlib will be really useful
+- SocketServer implements useful libraries for writing applications. Like starting a server supporting multiple clients.
+
 Other useful titbits:
 - * as function argument in an assignment. Carries all the elements passed to this function in a tuple
 - Another use of * is to expand a tuple
@@ -54,3 +59,4 @@ Other useful titbits:
 - dir(imported module name) - Gives the list of functions exported 
 - vars(), locals() can give the available user defined & inbuilt methods in the name space. vars(obj) will give the attributes associated with the argument.
 - Get to source file using __file__ . Eg. copy.__file__. Few built in libraries wont display source
+- sys.argv[] 
