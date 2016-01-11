@@ -22,6 +22,9 @@ class Pktgen:
     print "Initialize pkt .."
 
   def BuildPkt(self, **args):
+    self.iter_cnt = args['iter_cnt']
+    self.count = args['count']
+
     pkt = Ether(dst=args['dmac'], src=args['smac'])/Dot1Q(vlan=args['vlan'])/IP(src='192.0.0.1', dst='193.0.0.1')/TCP(dport=12345)
     self.pkt_list_intf1.append(pkt)
 
@@ -59,8 +62,13 @@ class Pktgen:
       for pkt in self.pkt_list_intf1:
          sendp(pkt,iface=tx_intf,verbose=None) 
 
+  def packet_callback(self): pass
+    
   def CapPkt(self, rx_intf):
-    sniff()
+    #wait_cnt = self.count * self.iter_cnt
+    wait_cnt = 22
+    pkts=sniff(filter="tcp port 12345", count=wait_cnt, timeout=10)
+    print "rcvd %d pkt" % len(pkts)
 
 if __name__ == '__main__':
     pkt_param = {}
@@ -74,6 +82,7 @@ if __name__ == '__main__':
     pkt_param['2way'] = True
     pkt_param['iter_cnt'] = 2
 
+    pkt = Pktgen()
     pid = os.fork()
     if pid:
       # Parent process - Use for Rx
@@ -84,7 +93,6 @@ if __name__ == '__main__':
       # Child process - Use for Tx
       print "In Child process .."
       # Todo : Wait for receiver to init then send frames
-      pkt = Pktgen()
       pkt.BuildPkt(**pkt_param)
       pkt.SendPkt(pkt_param['tx_intf'], pkt_param['iter_cnt'])
       os._exit(0)
