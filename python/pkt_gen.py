@@ -44,7 +44,7 @@ class Pktgen:
           self.pkt_list_intf1.append(pkt)
 
           if args['2way'] is True:
-             pkt = Ether(dst=args['smac'], src=args['dmac'])/Dot1Q(vlan=vlan_id)/IP(src='193.0.0.1', dst='192.0.0.1')/TCP(dport=12345)
+             pkt = Ether(dst=args['smac'], src=args['dmac'])/Dot1Q(vlan=vlan_id)/IP(src='193.0.0.1', dst='192.0.0.1')/TCP(dport=12346)
              self.pkt_list_intf2.append(pkt)
 
           vlan_id+=1
@@ -62,7 +62,7 @@ class Pktgen:
     print "Sending pkt on intf %s %d times" % (tx_intf, iter_cnt)
     while i:
       i-=1
-      for pkt in self.pkt_list:
+      for pkt in pkt_list:
          sendp(pkt,iface=tx_intf,verbose=None) 
 
   def packet_callback(self): pass
@@ -83,7 +83,7 @@ class Pktgen:
        f.writelines(p.summary() + '\n')
        count+=1
 
-    print "rcvd %d pkt" % len(pkts)
+    print "rcvd %d pkt on intf %s " % (len(pkts), rx_intf)
 
 if __name__ == '__main__':
     pkt_param = {}
