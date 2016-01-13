@@ -1,5 +1,9 @@
 File containing references
 
+* Debug:
+python -m pdb <script.py> - Lauches python debug shell and 1by1 lines are executed. Or break can be set
+Cmds - b <line#> to insert break ; n - next ; c - continue
+
 * Useful functions
 - repr - converts to a python expression and returns a string
 
