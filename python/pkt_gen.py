@@ -9,15 +9,11 @@ try:
 except ImportError:
   print "Install scapy to use this script .."
   sys.exit(1)
-finally:
-  print "Cleaning up .."
-
-print "Executing script .."
 
 __metaclass__ = type
 
 class Pktgen:
-  def __init__(self):
+  def __init__(self, **args):
     self.pkt_list_intf1 = []
     self.pkt_list_intf2 = []
     print "Initialize pkt .."
@@ -75,7 +71,7 @@ class Pktgen:
     else:
       tcp_port = "12346"
 
-    pkts=sniff(filter="tcp port "+tcp_port, iface=rx_intf, count=wait_cnt+1, timeout=10)
+    pkts=sniff(filter="tcp port "+tcp_port, iface=rx_intf, count=wait_cnt+1, timeout=5)
     count = 1
     f = open("cap.txt", "w")
     for p in pkts:
@@ -97,7 +93,7 @@ if __name__ == '__main__':
     pkt_param['2way'] = True
     pkt_param['iter_cnt'] = 2
 
-    pkt = Pktgen()
+    pkt = Pktgen(**pkt_param)
     pid = os.fork()
     if pid:
       # Parent process - Use for Rx
@@ -110,5 +106,5 @@ if __name__ == '__main__':
       # Todo : Wait for receiver to init then send frames
       time.sleep(1)
       pkt.BuildPkt(**pkt_param)
-      pkt.SendPkt(pkt_param['tx_intf'], pkt_param['iter_cnt'])
+      pkt.SendPkt(1, pkt_param['tx_intf'], pkt_param['iter_cnt'])
       os._exit(0)
