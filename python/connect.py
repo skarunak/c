@@ -18,6 +18,7 @@ __metaclass__ = type
 class make_link:
    def __init__(self, **args):
      self.params = {}
+     self.peer_fd = {}
      self.params[1] = {}
      self.params[1]['intf1'] = args['intf1']
      self.params[1]['intf2'] = args['intf2']
@@ -34,6 +35,9 @@ class make_link:
      s2 = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.htons(ETH_P_ALL))
      s2.bind((self.params[1]['intf2'],ETH_P_ALL))
 
+     self.peer_fd[self.params[1]['intf1']] = s2
+     self.peer_fd[self.params[1]['intf2']] = s1
+
      fd_list.append(s1)
      #sniff(iface=self.params[1]['intf1'], prn=self.pkt_call_bk, count=10)
      while True:
@@ -44,8 +48,8 @@ class make_link:
              #sniff(iface=self.params[1]['intf1'], prn=self.pkt_call_bk, count=10)
              pkt,sa = fd.recvfrom(MTU)
              print "read %d byte of pkt " % len(pkt)
-             # TODO: Get FDs pair interface and send on that ..
-             s2.sendall(pkt)
+             # TODO: getsockname returns vnet Get FDs pair interface and send on that ..
+             self.peer_fd[fd.getsockname()[0]].sendall(pkt)
         except (OSError, error) as e:
           #if e.args[0] != errno.EINTR:
             raise
