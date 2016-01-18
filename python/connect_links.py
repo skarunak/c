@@ -15,6 +15,8 @@ class connect_link:
      self.fd_list = [] # List of FDs 
      self.peer_fd = {} # Peer FD for a given interface
 
+   # Open socket and build necessary DBs 
+   def build_links(self, **args):
      i = 1;
      no_intfs = 0
      while i<=args['no_links']: 
@@ -36,7 +38,8 @@ class connect_link:
        i+=1
        no_intfs +=2
 
-   def setup_links(self):
+   # Capture and replay on already built fds
+   def connect_links(self):
      while True:
         try:
           fd_set = select(self.fd_list, [], [], 1)
@@ -51,7 +54,7 @@ class connect_link:
      
 if __name__ == '__main__':
    if len(sys.argv) < 4:
-      print "Usage: ./connect_link <#ofLinks> <List of Endpoints separated by space> \n For Eg. ./connect_link 2 eth0 eth1 eth10 eth11"
+      print "Usage: ./connect_link <#ofLinks> <List of netdevices separated by space> \n For Eg. ./connect_link 2 eth0 eth1 eth10 eth11"
       sys.exit(1)
    else:
       user_params = {}
@@ -63,6 +66,6 @@ if __name__ == '__main__':
             user_params['intf'+str(pos)] = i
          pos += 1
 
-   link = connect_link(**user_params)
-
-   link.setup_links()
+   link = connect_link()
+   link.build_links(**user_params)
+   link.connect_links()
