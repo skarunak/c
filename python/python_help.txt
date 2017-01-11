@@ -64,3 +64,4 @@ Other useful titbits:
 - vars(), locals() can give the available user defined & inbuilt methods in the name space. vars(obj) will give the attributes associated with the argument.
 - Get to source file using __file__ . Eg. copy.__file__. Few built in libraries wont display source
 - sys.argv[] 
+- map(function, sequence) - Returns a list by applying function on the sequence.
