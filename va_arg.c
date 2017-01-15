@@ -1,6 +1,10 @@
 #include <stdarg.h>
 #include <stdio.h>
 
+int g_i = 1000;
+int g_j = 2000;
+int g_k = 3000;
+
 /* this function will take the number of values to average
    followed by all of the numbers to average */
 double average ( int num, ... )
@@ -24,8 +28,12 @@ double average ( int num, ... )
 
 int main()
 {
+    char *str = "Senthilkumar Karunakaran";
+    int i = 100 , j = 200 , k = 300;
     /* this computes the average of 13.2, 22.3 and 4.5 (3 indicates the number of values to average) */
     printf( "%f\n", average ( 3, 12.2, 22.3, 4.5 ) );
+    printf("%d %d %d \n", i, j, k);
+    printf("%d %d %d \n", 400, 500, 600);
     /* here it computes the average of the 5 values 3.3, 2.2, 1.1, 5.5 and 3.3
     printf( "%f\n", average ( 5, 3.3, 2.2, 1.1, 5.5, 3.3 ) ); */
 }

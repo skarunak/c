@@ -1,0 +1,288 @@
+GAS LISTING /tmp/ccVpBWkN.s 			page 1
+
+
+   1              		.file	"va_arg.c"
+   2              		.text
+   3              	.Ltext0:
+   4              		.globl	average
+   6              	average:
+   7              	.LFB0:
+   8              		.file 1 "va_arg.c"
+   1:va_arg.c      **** #include <stdarg.h>
+   2:va_arg.c      **** #include <stdio.h>
+   3:va_arg.c      **** 
+   4:va_arg.c      **** /* this function will take the number of values to average
+   5:va_arg.c      ****    followed by all of the numbers to average */
+   6:va_arg.c      **** double average ( int num, ... )
+   7:va_arg.c      **** {
+   9              		.loc 1 7 0
+  10              		.cfi_startproc
+  11 0000 55       		pushq	%rbp
+  12              		.cfi_def_cfa_offset 16
+  13              		.cfi_offset 6, -16
+  14 0001 4889E5   		movq	%rsp, %rbp
+  15              		.cfi_def_cfa_register 6
+  16 0004 4881ECF0 		subq	$240, %rsp
+  16      000000
+  17 000b 89BD1CFF 		movl	%edi, -228(%rbp)
+  17      FFFF
+  18 0011 4889B558 		movq	%rsi, -168(%rbp)
+  18      FFFFFF
+  19 0018 48899560 		movq	%rdx, -160(%rbp)
+  19      FFFFFF
+  20 001f 48898D68 		movq	%rcx, -152(%rbp)
+  20      FFFFFF
+  21 0026 4C898570 		movq	%r8, -144(%rbp)
+  21      FFFFFF
+  22 002d 4C898D78 		movq	%r9, -136(%rbp)
+  22      FFFFFF
+  23 0034 84C0     		testb	%al, %al
+  24 0036 7420     		je	.L2
+  25 0038 0F294580 		movaps	%xmm0, -128(%rbp)
+  26 003c 0F294D90 		movaps	%xmm1, -112(%rbp)
+  27 0040 0F2955A0 		movaps	%xmm2, -96(%rbp)
+  28 0044 0F295DB0 		movaps	%xmm3, -80(%rbp)
+  29 0048 0F2965C0 		movaps	%xmm4, -64(%rbp)
+  30 004c 0F296DD0 		movaps	%xmm5, -48(%rbp)
+  31 0050 0F2975E0 		movaps	%xmm6, -32(%rbp)
+  32 0054 0F297DF0 		movaps	%xmm7, -16(%rbp)
+  33              	.L2:
+  34              		.loc 1 7 0
+  35 0058 64488B04 		movq	%fs:40, %rax
+  35      25280000 
+  35      00
+  36 0061 48898548 		movq	%rax, -184(%rbp)
+  36      FFFFFF
+  37 0068 31C0     		xorl	%eax, %eax
+   8:va_arg.c      ****     va_list arguments;                     
+   9:va_arg.c      ****     double sum = 0;
+  38              		.loc 1 9 0
+  39 006a 660FEFC0 		pxor	%xmm0, %xmm0
+GAS LISTING /tmp/ccVpBWkN.s 			page 2
+
+
+  40 006e F20F1185 		movsd	%xmm0, -216(%rbp)
+  40      28FFFFFF 
+  10:va_arg.c      ****     int x=0;
+  41              		.loc 1 10 0
+  42 0076 C78524FF 		movl	$0, -220(%rbp)
+  42      FFFF0000 
+  42      0000
+  11:va_arg.c      **** 
+  12:va_arg.c      ****     /* Initializing arguments to store all values after num */
+  13:va_arg.c      ****     va_start ( arguments, num );           
+  43              		.loc 1 13 0
+  44 0080 C78530FF 		movl	$8, -208(%rbp)
+  44      FFFF0800 
+  44      0000
+  45 008a C78534FF 		movl	$48, -204(%rbp)
+  45      FFFF3000 
+  45      0000
+  46 0094 488D4510 		leaq	16(%rbp), %rax
+  47 0098 48898538 		movq	%rax, -200(%rbp)
+  47      FFFFFF
+  48 009f 488D8550 		leaq	-176(%rbp), %rax
+  48      FFFFFF
+  49 00a6 48898540 		movq	%rax, -192(%rbp)
+  49      FFFFFF
+  14:va_arg.c      ****     /* Sum all the inputs; we still rely on the function caller to tell us how
+  15:va_arg.c      ****      * many there are */
+  16:va_arg.c      ****     for ( x = 0; x < num; x++ )        
+  50              		.loc 1 16 0
+  51 00ad C78524FF 		movl	$0, -220(%rbp)
+  51      FFFF0000 
+  51      0000
+  52 00b7 EB61     		jmp	.L3
+  53              	.L6:
+  17:va_arg.c      ****     {
+  18:va_arg.c      ****         sum += va_arg ( arguments, double ); 
+  54              		.loc 1 18 0
+  55 00b9 8B8534FF 		movl	-204(%rbp), %eax
+  55      FFFF
+  56 00bf 3DB00000 		cmpl	$176, %eax
+  56      00
+  57 00c4 7323     		jnb	.L4
+  58              		.loc 1 18 0 is_stmt 0 discriminator 2
+  59 00c6 488B8540 		movq	-192(%rbp), %rax
+  59      FFFFFF
+  60 00cd 8B9534FF 		movl	-204(%rbp), %edx
+  60      FFFF
+  61 00d3 89D2     		movl	%edx, %edx
+  62 00d5 4801D0   		addq	%rdx, %rax
+  63 00d8 8B9534FF 		movl	-204(%rbp), %edx
+  63      FFFF
+  64 00de 83C210   		addl	$16, %edx
+  65 00e1 899534FF 		movl	%edx, -204(%rbp)
+  65      FFFF
+  66 00e7 EB12     		jmp	.L5
+  67              	.L4:
+  68              		.loc 1 18 0 discriminator 1
+  69 00e9 488B8538 		movq	-200(%rbp), %rax
+GAS LISTING /tmp/ccVpBWkN.s 			page 3
+
+
+  69      FFFFFF
+  70 00f0 488D5008 		leaq	8(%rax), %rdx
+  71 00f4 48899538 		movq	%rdx, -200(%rbp)
+  71      FFFFFF
+  72              	.L5:
+  73              		.loc 1 18 0 discriminator 4
+  74 00fb F20F1000 		movsd	(%rax), %xmm0
+  75 00ff F20F108D 		movsd	-216(%rbp), %xmm1
+  75      28FFFFFF 
+  76 0107 F20F58C1 		addsd	%xmm1, %xmm0
+  77 010b F20F1185 		movsd	%xmm0, -216(%rbp)
+  77      28FFFFFF 
+  16:va_arg.c      ****     {
+  78              		.loc 1 16 0 is_stmt 1 discriminator 4
+  79 0113 838524FF 		addl	$1, -220(%rbp)
+  79      FFFF01
+  80              	.L3:
+  16:va_arg.c      ****     {
+  81              		.loc 1 16 0 is_stmt 0 discriminator 2
+  82 011a 8B8524FF 		movl	-220(%rbp), %eax
+  82      FFFF
+  83 0120 3B851CFF 		cmpl	-228(%rbp), %eax
+  83      FFFF
+  84 0126 7C91     		jl	.L6
+  19:va_arg.c      ****     }
+  20:va_arg.c      ****     va_end ( arguments );                  // Cleans up the list
+  21:va_arg.c      **** 
+  22:va_arg.c      ****     return sum / num;                      
+  85              		.loc 1 22 0 is_stmt 1
+  86 0128 660FEFC0 		pxor	%xmm0, %xmm0
+  87 012c F20F2A85 		cvtsi2sd	-228(%rbp), %xmm0
+  87      1CFFFFFF 
+  88 0134 F20F108D 		movsd	-216(%rbp), %xmm1
+  88      28FFFFFF 
+  89 013c F20F5EC8 		divsd	%xmm0, %xmm1
+  90 0140 660F28C1 		movapd	%xmm1, %xmm0
+  23:va_arg.c      **** }
+  91              		.loc 1 23 0
+  92 0144 488B8548 		movq	-184(%rbp), %rax
+  92      FFFFFF
+  93 014b 64483304 		xorq	%fs:40, %rax
+  93      25280000 
+  93      00
+  94 0154 7405     		je	.L8
+  95 0156 E8000000 		call	__stack_chk_fail
+  95      00
+  96              	.L8:
+  97 015b C9       		leave
+  98              		.cfi_def_cfa 7, 8
+  99 015c C3       		ret
+ 100              		.cfi_endproc
+ 101              	.LFE0:
+ 103              		.section	.rodata
+ 104              	.LC1:
+ 105 0000 53656E74 		.string	"Senthilkumar Karunakaran"
+ 105      68696C6B 
+ 105      756D6172 
+GAS LISTING /tmp/ccVpBWkN.s 			page 4
+
+
+ 105      204B6172 
+ 105      756E616B 
+ 106              	.LC5:
+ 107 0019 25660A00 		.string	"%f\n"
+ 108              	.LC6:
+ 109 001d 25642025 		.string	"%d %d %d \n"
+ 109      64202564 
+ 109      200A00
+ 110              		.text
+ 111              		.globl	main
+ 113              	main:
+ 114              	.LFB1:
+  24:va_arg.c      **** 
+  25:va_arg.c      **** int main()
+  26:va_arg.c      **** {
+ 115              		.loc 1 26 0
+ 116              		.cfi_startproc
+ 117 015d 55       		pushq	%rbp
+ 118              		.cfi_def_cfa_offset 16
+ 119              		.cfi_offset 6, -16
+ 120 015e 4889E5   		movq	%rsp, %rbp
+ 121              		.cfi_def_cfa_register 6
+ 122 0161 4883EC20 		subq	$32, %rsp
+  27:va_arg.c      ****     char *str = "Senthilkumar Karunakaran";
+ 123              		.loc 1 27 0
+ 124 0165 48C745F8 		movq	$.LC1, -8(%rbp)
+ 124      00000000 
+  28:va_arg.c      ****     /* this computes the average of 13.2, 22.3 and 4.5 (3 indicates the number of values to average
+  29:va_arg.c      ****     printf( "%f\n", average ( 3, 12.2, 22.3, 4.5 ) );
+ 125              		.loc 1 29 0
+ 126 016d F20F100D 		movsd	.LC2(%rip), %xmm1
+ 126      00000000 
+ 127 0175 F20F1005 		movsd	.LC3(%rip), %xmm0
+ 127      00000000 
+ 128 017d 48B86666 		movabsq	$4623057607486498406, %rax
+ 128      66666666 
+ 128      2840
+ 129 0187 660F28D1 		movapd	%xmm1, %xmm2
+ 130 018b 660F28C8 		movapd	%xmm0, %xmm1
+ 131 018f 488945E8 		movq	%rax, -24(%rbp)
+ 132 0193 F20F1045 		movsd	-24(%rbp), %xmm0
+ 132      E8
+ 133 0198 BF030000 		movl	$3, %edi
+ 133      00
+ 134 019d B8030000 		movl	$3, %eax
+ 134      00
+ 135 01a2 E8000000 		call	average
+ 135      00
+ 136 01a7 BF000000 		movl	$.LC5, %edi
+ 136      00
+ 137 01ac B8010000 		movl	$1, %eax
+ 137      00
+ 138 01b1 E8000000 		call	printf
+ 138      00
+  30:va_arg.c      ****     printf("%d %d %d \n", 100,200,300);
+ 139              		.loc 1 30 0
+ 140 01b6 B92C0100 		movl	$300, %ecx
+GAS LISTING /tmp/ccVpBWkN.s 			page 5
+
+
+ 140      00
+ 141 01bb BAC80000 		movl	$200, %edx
+ 141      00
+ 142 01c0 BE640000 		movl	$100, %esi
+ 142      00
+ 143 01c5 BF000000 		movl	$.LC6, %edi
+ 143      00
+ 144 01ca B8000000 		movl	$0, %eax
+ 144      00
+ 145 01cf E8000000 		call	printf
+ 145      00
+ 146 01d4 B8000000 		movl	$0, %eax
+ 146      00
+  31:va_arg.c      ****     /* here it computes the average of the 5 values 3.3, 2.2, 1.1, 5.5 and 3.3
+  32:va_arg.c      ****     printf( "%f\n", average ( 5, 3.3, 2.2, 1.1, 5.5, 3.3 ) ); */
+  33:va_arg.c      **** }
+ 147              		.loc 1 33 0
+ 148 01d9 C9       		leave
+ 149              		.cfi_def_cfa 7, 8
+ 150 01da C3       		ret
+ 151              		.cfi_endproc
+ 152              	.LFE1:
+ 154              		.section	.rodata
+ 155              		.align 8
+ 156              	.LC2:
+ 157 0028 00000000 		.long	0
+ 158 002c 00001240 		.long	1074921472
+ 159              		.align 8
+ 160              	.LC3:
+ 161 0030 CDCCCCCC 		.long	3435973837
+ 162 0034 CC4C3640 		.long	1077300428
+ 163              		.text
+ 164              	.Letext0:
+ 165              		.file 2 "/usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h"
+GAS LISTING /tmp/ccVpBWkN.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 va_arg.c
+     /tmp/ccVpBWkN.s:6      .text:0000000000000000 average
+     /tmp/ccVpBWkN.s:113    .text:000000000000015d main
+
+UNDEFINED SYMBOLS
+__stack_chk_fail
+printf
