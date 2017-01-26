@@ -65,3 +65,4 @@ Other useful titbits:
 - Get to source file using __file__ . Eg. copy.__file__. Few built in libraries wont display source
 - sys.argv[] 
 - map(function, sequence) - Returns a list by applying function on the sequence.
+- [expression for expr in sequence if condition] - Returns a new list based on the expression matching the if condition for each of the items in the sequence.
