@@ -242,6 +242,18 @@ int haspathsum(Node *proot, int sum)
    }
 }
 
+Node *
+common_ancestor(Node *proot, Node *p, Node *q)
+{
+    if (!proot || !p || !q) return 0;
+
+    if (p->data < proot->data && q->data < proot->data) 
+        return common_ancestor(proot->pleft, p, q);
+    else if (p->data > proot->data && q->data > proot->data)
+        return common_ancestor(proot->pright, p, q);
+    // Base case where p & q are in different sub-tree ie common intersection
+    return proot;
+}
 
 void printpath(Node *proot, int *a, int len)
 {
@@ -371,6 +383,7 @@ Node *proot = 0;
 Node *gnode = 0x0;
 Node *plist = 0x0;
 Node *ptemp = 0x0;
+Node *pancestor = 0x0;
 
 proot = add(proot, 5);
 proot = add(proot, 3);
@@ -400,6 +413,8 @@ printf("\n Print inorder: ");
 printinorder(proot);
 printlevelorder(proot);
 printlevelorder1(proot);
+pancestor = common_ancestor(proot, getnode(proot, 2), getnode(proot, 4));
+printf("\n Ancestor of %d , %d is %d \n", 2,4,pancestor->data);
 #if 0
 printf("\n Print post order: ");
 printpostorder(proot);
