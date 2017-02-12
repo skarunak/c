@@ -45,6 +45,8 @@ One type data type within another. Eg list within a list.
 
 * Generators:
 - Use yield keyword, similar to return but the function freezes there and when called again continues from where it is left.
+- there are other forms as well, like  "square = (i*i for i in irange(1000000))"in which 'square' is a generator
+- generator form of 'range' command is 'xrange' which will return a iterator instead of a list. xrange will be faster for larger numbers as whole list is not created on the fly.
 
 * sockets
 - urllib & urllib2 are useful in extracting webpages. Data can be extracted using 're' modules
