@@ -8,6 +8,83 @@ struct node *pleft;
 struct node *pright;
 } Node;
 
+int _isBST(Node *proot, Node **prev)
+{
+    int val = 1;
+    if (!proot) return 1;
+
+    if (val) 
+	    val = _isBST(proot->pleft, prev);
+
+    if (*prev && (*prev)->data > proot->data) return 0;
+
+    *prev = proot;
+    if (val)
+	    val = _isBST(proot->pright, prev);
+
+    return val;
+}
+
+int isBST(Node *proot)
+{
+    Node *p_prev = NULL;
+
+    /* !!@#!@#!@ Below implementation is Wrong !@#!@#@ */
+#if 0
+   if (proot == NULL) return 1;
+   if (!proot->pright && !proot->pleft) return 1;
+
+   if (proot->pright) {
+      if (proot->data >= proot->pright->data) return 0;
+   }
+   if (proot->pleft) { 
+      if (proot->data < proot->pleft->data) return 0;
+   }
+
+   return (isBST(proot->pleft) && isBST(proot->pright));
+#else
+   return _isBST(proot, &p_prev);
+#endif
+}
+
+void _tree_to_dll(Node *proot, Node **pprev, Node **pphead)
+{
+     if (proot == NULL) return;
+
+     _tree_to_dll(proot->pleft, pprev, pphead);
+
+     if (*pprev) {
+          (*pprev)->pright = proot;
+          proot->pleft = *pprev;
+          if (!*pphead) { 
+              *pphead = *pprev;
+          }
+     }
+     *pprev = proot;
+
+     _tree_to_dll(proot->pright, pprev, pphead);
+
+     return;
+}
+
+Node *tree_to_dll(Node *proot)
+{
+     Node *pprev = NULL;
+     Node *pphead = NULL;
+     _tree_to_dll(proot, &pprev, &pphead);
+     return pphead;
+}
+int getmaxnum(Node *proot)
+{
+   int max = 0;
+   if (proot == NULL) return -1;
+
+   if (proot->pright == NULL) return proot->data;
+
+   max = getmaxnum(proot->pright);
+   return max;
+}
+
 void printinorder (Node *proot)
 {
 
@@ -20,6 +97,32 @@ printinorder(proot->pleft);
 printf("%d ", proot->data);
 printinorder(proot->pright);
 
+}
+
+int printkth_helper(Node *proot, int *k)
+{
+    int val = 0;
+    if (proot == 0)  return -1;
+
+    val = printkth_helper(proot->pleft, k);
+    --(*k);
+    if (val <= 0) { 
+    if (*k == 0) { 
+        return proot->data;
+    } else { 
+        val = printkth_helper(proot->pright, k);
+    }
+    }
+    return val;
+    
+}
+int printkthmin(Node *proot, int k) 
+{
+   int val;
+   if (proot == 0) return -1;
+
+   val = printkth_helper(proot, &k);
+   return val;
 }
 
 void printmin(Node *proot)
@@ -400,6 +503,8 @@ proot = add(proot, 8);
 proot = add(proot, 7);
 proot = add(proot, -1);
 #endif
+printf("\n IsBST %d \n", isBST(proot));
+printf("\n Largest number %d \n", getmaxnum(proot));
 printf("\n Same tree %d %d", sametree(proot, proot->pleft), sametree(proot, proot));
 printf ("\n Print paths :"); 
 printpath(proot, a, 0);
@@ -411,6 +516,7 @@ printpath(proot, a, 0);
 printf ("\npath sum %d is %d", pathsum, haspathsum(proot, pathsum));
 printf("\n Print inorder: ");
 printinorder(proot);
+printf("\n 1,5,6th min is %d %d %d \n", printkthmin(proot, 1), printkthmin(proot, 5), printkthmin(proot, 6));
 printlevelorder(proot);
 printlevelorder1(proot);
 pancestor = common_ancestor(proot, getnode(proot, 2), getnode(proot, 4));
@@ -455,13 +561,14 @@ printf ("\n Print paths :");
 printpath(proot, a, 0);
 #endif
 printf("\n Tree to list : ");
-plist = treetolist(proot);
+//plist = treetolist(proot);
+printf("\n BST to DLL head %p \n", (plist = tree_to_dll(proot)));
 
 ptemp = plist;
 do {
-   printf("%d ", ptemp->data);
+   printf(" %d %d :: ", ptemp->pleft ? ptemp->pleft->data: -1, ptemp->data);
    ptemp = ptemp->pright;
-}while(ptemp!= plist);
+}while(ptemp);
 
   return 0;
 }
