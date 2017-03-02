@@ -425,6 +425,8 @@ int sametree(Node *pnode1, Node *pnode2)
     return (sametree(pnode1->pleft, pnode2->pleft) && sametree(pnode1->pright, pnode2->pright));
 }
 
+
+// Below tree to list doesnt work, check why
 static void join(Node *a, Node *b) {
     a->pright = b;
     b->pleft = a;
@@ -541,13 +543,13 @@ printf("\nFind 6 %p %d", gnode, gnode?gnode->data:-1);
 printmin(proot);
 #endif
 #if 1
-printf("\nmirror function ..\n");
-mirror(proot);
+//printf("\nmirror function ..\n");
+//mirror(proot);
 printlevelorder(proot);
 printf ("\n Print paths :"); 
 printpath(proot, a, 0);
-//printf ("\n Duplicate tree :");
-//duplicate(proot);
+printf ("\n Duplicate tree :");
+duplicate(proot);
 printf ("\n Print paths :"); 
 printpath(proot, a, 0);
 printf("\nAnother mirror function ..\n");

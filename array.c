@@ -1,6 +1,7 @@
 main()
 {
-int *p[4];
+int size = 10;
+int *p[size];
 int (*p1)[4];
 char a[5]="ksk";
 int arr[3][4] = { 1,2,3,4,5,6,7,8,9,10,11,12};
