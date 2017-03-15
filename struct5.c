@@ -12,7 +12,7 @@ typedef struct {
 } i;
 int main(void)
 {
-    printf("%d %d\n", sizeof(ch), sizeof(i));
+    printf("%d %d %d %d\n", sizeof(ch), sizeof(i), sizeof(long int), sizeof(long double));
     i i1 = { i: 5, j:10.05, s:2};
     i i2 = { 6, 16.05, 7};
     i i3 = { s:6, i:16, j:7.5};

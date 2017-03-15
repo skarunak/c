@@ -33,11 +33,31 @@ void quicksort(int *arr, int start, int end)
    }
 }
 
+// Find kth smallest element
+int quickselect(int *arr, int start, int end, int k)
+{
+    if (start < end) { 
+     int pivot_idx = q_partition(arr, start, end);
+     if (k == pivot_idx) { 
+         return arr[k];
+     } else if (k > pivot_idx) {
+         return quickselect(arr, pivot_idx+1, end, k);
+     } else {
+         return quickselect(arr, start, pivot_idx-1, k);
+     }
+    } else if (start == end) {
+     return arr[start]; 
+    }
+    return -1;
+}
 int main(void)
 {
    int arr[8] = { 7,2,6,3,5,6,8,4};
    int len = (sizeof(arr)/sizeof(int)) - 1;
    int i;
+   int k = 0;
+
+   printf(" Quickselect %dth pos %d \n", k, quickselect(arr, 0, len, k));
 
    quicksort(arr, 0, len);
 
