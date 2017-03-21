@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct node {
 int data;
@@ -333,6 +334,44 @@ void printlevelorder(Node *proot)
     }while(pnode);
 }
 
+typedef struct _v {
+   int num[20];
+   int count;
+}vector;
+
+void printvector(vector *v, int idx) 
+{
+   int i = idx;
+   for (i = idx; i <= v->count ; i++) 
+       printf("%d ", v->num[i]);
+
+   printf("\n");
+}
+
+void hasanypathsum(Node *proot, vector *v, int sum) 
+{
+   int i, s = 0;
+   if (!proot) return;
+
+   // Do a pre-order traversal
+   // Insert into the array
+   v->num[++v->count] = proot->data;
+
+   // Traverse left & then right
+   hasanypathsum(proot->pleft, v, sum);
+   hasanypathsum(proot->pright, v, sum);
+
+   // Find the sum in vector from the first left and unwind
+   s = 0;
+   for (i = v->count; i>0; i--) {
+       s += v->num[i];
+
+       if (s == sum) printvector(v, i);
+   }
+   // Pop the current element from the array 
+   v->count--;
+}
+
 int haspathsum(Node *proot, int sum)
 {
    int subsum = 0;
@@ -482,7 +521,7 @@ Node* treetolist(Node *pnode)
 
 int main ()
 {
-int pathsum = 26;
+int pathsum = 14;
 int a[100];
 Node *proot = 0;
 Node *gnode = 0x0;
@@ -496,7 +535,7 @@ proot = add(proot, 6);
 proot = add(proot, 2);
 proot = add(proot, 4);
 proot = add(proot, 7);
-#if 0
+#if 1
 proot = add(proot, 6);
 proot = add(proot, 6);
 proot = add(proot, 7);
@@ -516,6 +555,10 @@ printf("\nHeight of the tree %d %d", height(proot), height1(proot));
 printf ("\n Print paths :"); 
 printpath(proot, a, 0);
 printf ("\npath sum %d is %d", pathsum, haspathsum(proot, pathsum));
+vector v;
+memset(&v, 0, sizeof(v));
+printf ("\nAny path sum %d is ", pathsum);
+hasanypathsum(proot, &v, pathsum) ;
 printf("\n Print inorder: ");
 printinorder(proot);
 printf("\n 1,5,6th min is %d %d %d \n", printkthmin(proot, 1), printkthmin(proot, 5), printkthmin(proot, 6));
