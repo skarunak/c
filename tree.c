@@ -9,6 +9,20 @@ struct node *pleft;
 struct node *pright;
 } Node;
 
+
+// Largest BST inside a binary tree 
+// Struct having largest BST sub-tree
+typedef struct {
+   Node *root;
+   int count;
+} BST;
+
+// Returns root of largest BST
+Node * largestBST(Node *root, BST *new_root) 
+{
+   
+}
+
 int _isBST(Node *proot, Node **prev)
 {
     int val = 1;
@@ -414,6 +428,31 @@ void printpath(Node *proot, int *a, int len)
     printpath(proot->pright, a, len);
 }
 
+int is_mirror_helper(Node *left, Node *right)
+{
+    // Both nodes are NULL
+    if (!left && !right) return 1;
+
+    // Either of the node is not NULL
+    if (!left || !right) return 0;
+
+    // Data doesnt match 
+    if (left->data != right->data) return 0;
+ 
+    return (is_mirror_helper(left->pleft, right->pright) &&
+           (is_mirror_helper(left->pright, right->pleft));
+}
+
+/* Cannot test it, for this the tree cannot be BST. Since this file creates
+ * BST */
+int is_mirror(Node *pnode)
+{
+    if (!pnode) return 0;
+    if (!pnode->pleft || !pnode->pright) return 0;
+
+    return is_mirror_helper(pnode->pleft, pnode->pright);
+}
+
 void mirror(Node *pnode) 
 {
     Node *ptemp = 0x0;
@@ -586,8 +625,8 @@ printf("\nFind 6 %p %d", gnode, gnode?gnode->data:-1);
 printmin(proot);
 #endif
 #if 1
-//printf("\nmirror function ..\n");
-//mirror(proot);
+printf("\nmirror function ..\n");
+mirror(proot);
 printlevelorder(proot);
 printf ("\n Print paths :"); 
 printpath(proot, a, 0);
