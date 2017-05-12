@@ -1,0 +1,146 @@
+GAS LISTING /tmp/ccXGgE8q.s 			page 1
+
+
+   1              		.file	"var.c"
+   2              		.text
+   3              	.Ltext0:
+   4              		.comm	g_i,4,4
+   5              		.comm	g_j,4,4
+   6              		.comm	g_k,4,4
+   7              		.section	.rodata
+   8              	.LC0:
+   9 0000 53656E74 		.string	"Senthilkumar Karunakaran"
+   9      68696C6B 
+   9      756D6172 
+   9      204B6172 
+   9      756E616B 
+  10              	.LC1:
+  11 0019 25642025 		.string	"%d %d %d \n"
+  11      64202564 
+  11      200A00
+  12              		.text
+  13              		.globl	main
+  15              	main:
+  16              	.LFB0:
+  17              		.file 1 "var.c"
+   1:var.c         **** #include <stdio.h>
+   2:var.c         **** 
+   3:var.c         **** int g_i;
+   4:var.c         **** int g_j;
+   5:var.c         **** int g_k;
+   6:var.c         **** 
+   7:var.c         **** int main()
+   8:var.c         **** {
+  18              		.loc 1 8 0
+  19              		.cfi_startproc
+  20 0000 55       		pushq	%rbp
+  21              		.cfi_def_cfa_offset 16
+  22              		.cfi_offset 6, -16
+  23 0001 4889E5   		movq	%rsp, %rbp
+  24              		.cfi_def_cfa_register 6
+  25 0004 4881EC70 		subq	$880, %rsp
+  25      030000
+  26              		.loc 1 8 0
+  27 000b 64488B04 		movq	%fs:40, %rax
+  27      25280000 
+  27      00
+  28 0014 488945F8 		movq	%rax, -8(%rbp)
+  29 0018 31C0     		xorl	%eax, %eax
+   9:var.c         ****     char *str = "Senthilkumar Karunakaran";
+  30              		.loc 1 9 0
+  31 001a 48C785A8 		movq	$.LC0, -856(%rbp)
+  31      FCFFFF00 
+  31      000000
+  10:var.c         ****     char name[] = "Senthilkumar Karunakaran";
+  32              		.loc 1 10 0
+  33 0025 48B85365 		movabsq	$7740677756893947219, %rax
+  33      6E746869 
+  33      6C6B
+  34 002f 488945D0 		movq	%rax, -48(%rbp)
+  35 0033 48B8756D 		movabsq	$8241951395794742645, %rax
+GAS LISTING /tmp/ccXGgE8q.s 			page 2
+
+
+  35      6172204B 
+  35      6172
+  36 003d 488945D8 		movq	%rax, -40(%rbp)
+  37 0041 48B8756E 		movabsq	$7953764179651948149, %rax
+  37      616B6172 
+  37      616E
+  38 004b 488945E0 		movq	%rax, -32(%rbp)
+  39 004f C645E800 		movb	$0, -24(%rbp)
+  11:var.c         ****     int i = 100 , j = 200 , k = 300;
+  40              		.loc 1 11 0
+  41 0053 C7859CFC 		movl	$100, -868(%rbp)
+  41      FFFF6400 
+  41      0000
+  42 005d C785A0FC 		movl	$200, -864(%rbp)
+  42      FFFFC800 
+  42      0000
+  43 0067 C785A4FC 		movl	$300, -860(%rbp)
+  43      FFFF2C01 
+  43      0000
+  12:var.c         ****     int array[10][20];
+  13:var.c         ****     printf("%d %d %d \n", i, j, k);
+  44              		.loc 1 13 0
+  45 0071 8B8DA4FC 		movl	-860(%rbp), %ecx
+  45      FFFF
+  46 0077 8B95A0FC 		movl	-864(%rbp), %edx
+  46      FFFF
+  47 007d 8B859CFC 		movl	-868(%rbp), %eax
+  47      FFFF
+  48 0083 89C6     		movl	%eax, %esi
+  49 0085 BF000000 		movl	$.LC1, %edi
+  49      00
+  50 008a B8000000 		movl	$0, %eax
+  50      00
+  51 008f E8000000 		call	printf
+  51      00
+  14:var.c         ****     printf("%d %d %d \n", 400, 500, 600);
+  52              		.loc 1 14 0
+  53 0094 B9580200 		movl	$600, %ecx
+  53      00
+  54 0099 BAF40100 		movl	$500, %edx
+  54      00
+  55 009e BE900100 		movl	$400, %esi
+  55      00
+  56 00a3 BF000000 		movl	$.LC1, %edi
+  56      00
+  57 00a8 B8000000 		movl	$0, %eax
+  57      00
+  58 00ad E8000000 		call	printf
+  58      00
+  59 00b2 B8000000 		movl	$0, %eax
+  59      00
+  15:var.c         **** }
+  60              		.loc 1 15 0
+  61 00b7 488B75F8 		movq	-8(%rbp), %rsi
+  62 00bb 64483334 		xorq	%fs:40, %rsi
+  62      25280000 
+  62      00
+GAS LISTING /tmp/ccXGgE8q.s 			page 3
+
+
+  63 00c4 7405     		je	.L3
+  64 00c6 E8000000 		call	__stack_chk_fail
+  64      00
+  65              	.L3:
+  66 00cb C9       		leave
+  67              		.cfi_def_cfa 7, 8
+  68 00cc C3       		ret
+  69              		.cfi_endproc
+  70              	.LFE0:
+  72              	.Letext0:
+GAS LISTING /tmp/ccXGgE8q.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 var.c
+                            *COM*:0000000000000004 g_i
+                            *COM*:0000000000000004 g_j
+                            *COM*:0000000000000004 g_k
+     /tmp/ccXGgE8q.s:15     .text:0000000000000000 main
+
+UNDEFINED SYMBOLS
+printf
+__stack_chk_fail

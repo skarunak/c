@@ -1,16 +1,18 @@
+#include <stdio.h>
+
 int f()
 {
-printf("Stack : \n%p \n%p \n%p \n%p \n%p");
+printf("Stack : \n%lx \n%lx \n%lx \n%lx \n%lx");
 }
 
-main()
+int main(void)
 {
-int i = 0, j=0, k =0 ;
+int i = 0x100, j=0x200;
 /* printf("Stack : \n%p \n%p \n%p \n%p \n%p"); */
-printf ("\n%p %p %p %p\n", &i, &j, &k, main);
+printf ("\n%ld %ld %ld\n", &i, &j, main);
 
 f();
-
+return 0;
 }
 
 

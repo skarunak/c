@@ -2,8 +2,9 @@
 struct example1 {
 char c1;
 short s1;
+int *p1;
 char c2;
-long l1;
+int l1;
 char c3;
 }a;
 
@@ -19,6 +20,7 @@ char pad[3];
 struct example3 {
 int i;
 short s;
+int *j;
 char c;
 }c;
 
