@@ -6,6 +6,7 @@ Cmds - b <line#> to insert break ; n - next ; c - continue
 
 * Useful functions
 - repr - converts to a python expression and returns a string
+- eval - evaluates the input and returns int. This can be used to read a single integer from stdin along with raw_input().
 
 * Data Types:
 - Strings , raw strings
