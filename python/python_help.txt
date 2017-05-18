@@ -44,6 +44,7 @@ One type data type within another. Eg list within a list.
 - Else can be used in conjunction with except and finally is called in any case whether an exception occurred or not which can be used for cleaning up
 
 * Generators:
+- Lazy loops, executes when these functions are called
 - Use yield keyword, similar to return but the function freezes there and when called again continues from where it is left.
 - there are other forms as well, like  "square = (i*i for i in irange(1000000))"in which 'square' is a generator
 - generator form of 'range' command is 'xrange' which will return a iterator instead of a list. xrange will be faster for larger numbers as whole list is not created on the fly.
@@ -59,7 +60,7 @@ Other useful titbits:
 - ** as functiona argument does the above but stores all in key,value pairs in a dictionary
 - Another use of ** is to expand a dictionary
 - 'is' operator tests for identity and not for equality. 
-- enumerate - useful in iterating
+- enumerate - useful in iterating a list. returns idx,list_val for each list elements. Usage: for idx,val in enumerate(a-list)
 - there is 'else' for 'for' statement as well
 - slice of any object returns a copy and wont be pointing to same reference
 - dir(imported module name) - Gives the list of functions exported 
