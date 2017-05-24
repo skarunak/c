@@ -24,6 +24,6 @@ def christ(n):
 
 
 
-christ(20)
+christ(5)
 
 
