@@ -50,6 +50,11 @@ int quickselect(int *arr, int start, int end, int k)
     }
     return -1;
 }
+
+int merge_sort(int *arr, int low, int high)
+{
+}
+
 int main(void)
 {
    int arr[8] = { 7,2,6,3,5,6,8,4};
